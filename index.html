@@ -1,17 +1,28 @@
 <html>
   <head>
     <title>PK Travel, the world is your oyster!</title>
-    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <script src="https://maps.googleapis.com/maps/AIzaSyCXsGZXFpljrJR5i6azh-75RspTgQ1mQ8E/js?libraries=places"></script>
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://fonts.googleapis.com/css?family=Orbitron"
+    rel="stylesheet"/> 
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" /> <!--Left this as the background images, won appear when I put the style sheet in CSS folder-->
+    <script src="map/maps.js"></script>
   </head>
   <body>
     <section class="header">
@@ -22,17 +33,235 @@
       <p>Just type in your destination</p>
       <div class="input-group">
         <input
+          id="autocomplete"
           type="text"
           class="form-control"
           placeholder="Search Country or City"
         />
-        <div class="input-group-append">
-          <button type="submit" class="input-group-text btn">Search</button>
+  
+      </div>
+      <div id="slbuttons">
+        <div class="btn btn-info" onclick="onPlaceChanged(['lodging'])">
+          Hotels
+        </div>
+        <div
+          class="btn btn-warning"
+          onclick="onPlaceChanged(['bar', 'restaurant'])"
+        >
+          Bars/Restaurants
+        </div>
+        <div class="btn btn-danger" onclick="onPlaceChanged(['museum'])">
+          Tourist Attractions
+        </div>
+        <div
+          id="button"
+          class="btn btn-success text-center"
+          onclick="reset()"
+        >
+          <i>Reset </i>
+        </div>
+      </div>
+    </div>
+  </div>
+    </section>
+    <section class="features">
+      <div class="row">
+        <!-- map -->
+        <div class="col-sm-12 text-center">
+          <div id="map"></div>
+        </div>
+      </div>
+      
+    </section>
+    <section class="mapTable">
+          <div class="row">
+        <div class="col-sm-12 text-center">
+          <!-- results section-->
+          <div id="resultsdropdown"></div>
+          <div id="listing">
+            <table id="resultsTable">
+              <tbody id="results"></tbody>
+            </table>
+          </div>
+          <div style="display: none;">
+            <div id="info-content">
+              <table>
+                <tbody>
+                  <tr id="iw-url-row" class="iw_table_row">
+                    <td id="iw-icon" class="iw_table_icon"></td>
+                    <td id="iw-url"></td>
+                  </tr>
+                  <tr id="iw-address-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Address:</td>
+                    <td id="iw-address"></td>
+                  </tr>
+                  <tr id="iw-phone-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Telephone:</td>
+                    <td id="iw-phone"></td>
+                  </tr>
+                  <tr id="iw-rating-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Rating:</td>
+                    <td id="iw-rating"></td>
+                  </tr>
+                  <tr id="iw-website-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Website:</td>
+                    <td id="iw-website"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+      </div>
+
+      
+    </section>
+    <section class="gallery">
+      <h1 style="color: black;">Travelling Gallery</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="gallery-box">
+              <img src="images/travel-1.jpg" />
+              <h4>Greece</h4>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="gallery-box">
+              <img src="images/travel-2.jpg" />
+              <h4>France</h4>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="gallery-box">
+              <img src="images/travel-3.jpg" />
+              <h4>Venice Beach</h4>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="gallery-box">
+              <img src="images/travel-4.jpg" />
+              <h4>Italy</h4>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <section class="features">
-      <h1>Featured Destinations</h1>
+    <section class="banner">
+      <div class="banner-highlights">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <h2>Get 30% on top destination</h2>
+              <p>
+                Book your tickets before 31st march and avail 30% flat discount.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="booking-btn">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="users-feedback">
+      <h1 style="color: black;">Users Review</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="user-review">
+              <p>
+                Fantastic service, I found the right holidat from me. I will be
+                using your service again.
+              </p>
+              <h5>John</h5>
+              <small>France</small>
+            </div>
+            <img src="images/john.jpg" />
+          </div>
+          <div class="col-md-4">
+            <div class="user-review">
+              <p>
+                Mexico was Fantastic, great people and the info you sent before
+                hand came in so handy.
+              </p>
+              <h5>Max</h5>
+              <small>Mexico</small>
+            </div>
+            <img src="images/max.jpg" />
+          </div>
+          <div class="col-md-4">
+            <div class="user-review">
+              <p>
+                Had a blast, that list of discount stores, really helped my
+                pocket :)
+              </p>
+              <h5>Sinead</h5>
+              <small>New York</small>
+            </div>
+            <img src="images/sinead.jpg" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="images/pktravel.png" class="footer-logo" />
+            <p>
+              Our mission is to make sure you find the trip of your dreams :)
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h4>Features</h4>
+            <p>Deals & Offers</p>
+            <p>Customer Reviews</p>
+            <p>Cancelation Policy</p>
+          </div>
+          <div class="col-md-3">
+            <h4>Quick Contact</h4>
+            <p><i class="fa fa-phone-square"></i> + 353123456789</p>
+            <p><i class="fa fa-envelope"></i> hello@example.ie</p>
+            <p><i class="fa fa-home"></i> Dublin Ireland</p>
+          </div>
+          <div class="col-md-3">
+            <h4>Follow Us on</h4>
+            <p><i class="fa fa-facebook-official"></i> Facebook</p>
+            <p><i class="fa fa-youtube-play"></i> YouTube</p>
+            <p><i class="fa fa-twitter"></i> Twitter</p>
+          </div>
+        </div>
+        <hr />
+        <p class="copyright">Coded with <i class="fa fa-heart"></i> by PK</p>
+      </div>
+    </section>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJOWyIW9rsRo4oEg8sDejpksFkD6EbKFc&amp;libraries=places&amp;callback=initMap"
+      async=""
+      defer=""
+    ></script>
+  </body>
+</html>
+
+
+<!-- <h1>Featured Destinations</h1>
       <div class="container">
         <div class="row">
           <div class="col-md-4">
@@ -120,127 +349,4 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="gallery">
-      <h1>Travelling Gallery</h1>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="gallery-box">
-              <img src="images/travel-1.jpg" />
-              <h4>Greece</h4>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="gallery-box">
-              <img src="images/travel-2.jpg" />
-              <h4>France</h4>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="gallery-box">
-              <img src="images/travel-3.jpg" />
-              <h4>Venice Beach</h4>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="gallery-box">
-              <img src="images/travel-4.jpg" />
-              <h4>Italy</h4>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="banner">
-      <div class="banner-highlights">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8">
-              <h2>Get 30% on top destination</h2>
-              <p>
-                Book your tickets before 31st march and avail 30% flat discount.
-              </p>
-            </div>
-            <div class="col-md-4">
-              <button type="button" class="booking-btn">Book Now</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="users-feedback">
-      <h1>Users Review</h1>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="user-review">
-              <p>
-                Fantastic service, I found the right holidat from me. I will be
-                using your service again.
-              </p>
-              <h5>John</h5>
-              <small>France</small>
-            </div>
-            <img src="images/john.jpg" />
-          </div>
-          <div class="col-md-4">
-            <div class="user-review">
-              <p>
-                Mexico was Fantastic, great people and the info you sent before
-                hand came in so handy.
-              </p>
-              <h5>Max</h5>
-              <small>Mexico</small>
-            </div>
-            <img src="images/max.jpg" />
-          </div>
-          <div class="col-md-4">
-            <div class="user-review">
-              <p>
-                Had a blast, that list of discount stores, really helped my
-                pocket :)
-              </p>
-              <h5>Sinead</h5>
-              <small>New York</small>
-            </div>
-            <img src="images/sinead.jpg" />
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <img src="images/pktravel.png" class="footer-logo" />
-            <p>
-              Our mission is to make sure you find the trip of your dreams :)
-            </p>
-          </div>
-          <div class="col-md-3">
-            <h4>Features</h4>
-            <p>Deals & Offers</p>
-            <p>Customer Reviews</p>
-            <p>Cancelation Policy</p>
-          </div>
-          <div class="col-md-3">
-            <h4>Quick Contact</h4>
-            <p><i class="fa fa-phone-square"></i> + 353123456789</p>
-            <p><i class="fa fa-envelope"></i> hello@example.ie</p>
-            <p><i class="fa fa-home"></i> Dublin Ireland</p>
-          </div>
-          <div class="col-md-3">
-            <h4>Follow Us on</h4>
-            <p><i class="fa fa-facebook-official"></i> Facebook</p>
-            <p><i class="fa fa-youtube-play"></i> YouTube</p>
-            <p><i class="fa fa-twitter"></i> Twitter</p>
-          </div>
-        </div>
-        <hr />
-        <p class="copyright">Coded with <i class="fa fa-heart"></i> by PK</p>
-      </div>
-    </section>
-  </body>
-</html>
+      </div> -->
