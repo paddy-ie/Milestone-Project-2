@@ -67,12 +67,20 @@
     box-shadow: none !important;
 }
 
-/*features*/
+/*Map Section*/
 
-.features
+.map
 {
     padding: 0px 0;
 }
+
+.mapTable
+{
+    padding: 0px 0;
+    display: none;
+    
+}
+
 h1
 {
     text-align: center;
@@ -475,14 +483,3 @@ table {
         height: 38vh;
     }
 }
-
-
-
-
-
-
-
-
-
-
-

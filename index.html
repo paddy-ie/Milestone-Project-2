@@ -20,9 +20,9 @@
   <link
     href="https://fonts.googleapis.com/css?family=Orbitron"
     rel="stylesheet"/> 
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="stylesheet" href="style.css" /> <!--Left this as the background images, won appear when I put the style sheet in CSS folder-->
-    <script src="map/maps.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    
+    <script src="js/maps.js"></script>
   </head>
   <body>
     <section class="header">
@@ -31,40 +31,31 @@
       </div>
       <h1>Travel Across The Globe</h1>
       <p>Just type in your destination</p>
-      <div class="input-group">
+      <div id="typing" class="input-group">
         <input
-          id="autocomplete"
+          id="autocomplete" ID ="typing"
           type="text"
           class="form-control"
           placeholder="Search Country or City"
         />
   
+      
+    </section>
+    <div id="slbuttons">
+      <div class="btn btn-info" onclick="onPlaceChanged(['lodging'])">
+        Hotels
       </div>
-      <div id="slbuttons">
-        <div class="btn btn-info" onclick="onPlaceChanged(['lodging'])">
-          Hotels
-        </div>
-        <div
-          class="btn btn-warning"
-          onclick="onPlaceChanged(['bar', 'restaurant'])"
-        >
-          Bars/Restaurants
-        </div>
-        <div class="btn btn-danger" onclick="onPlaceChanged(['museum'])">
-          Tourist Attractions
-        </div>
-        <div
-          id="button"
-          class="btn btn-success text-center"
-          onclick="reset()"
-        >
-          <i>Reset </i>
-        </div>
+      <div class="btn btn-info" onclick="onPlaceChanged(['bar', 'restaurant'])">
+        Bars/Restaurants
+      </div>
+      <div class="btn btn-info" onclick="onPlaceChanged(['museum'])">
+        Tourist Attractions
+      </div>
+      <div id="button" class="btn btn-warning text-center" onclick="reset()">
+        <i>Reset </i>
       </div>
     </div>
-  </div>
-    </section>
-    <section class="features">
+    <section class="map">
       <div class="row">
         <!-- map -->
         <div class="col-sm-12 text-center">
@@ -73,7 +64,7 @@
       </div>
       
     </section>
-    <section class="mapTable">
+    <section class="mapTable" id ="results">
           <div class="row">
         <div class="col-sm-12 text-center">
           <!-- results section-->
@@ -128,19 +119,20 @@
           </div>
           <div class="col-md-3">
             <div class="gallery-box">
-              <img src="images/travel-2.jpg" />
+             <img src="images/travel-2.jpg" />
               <h4>France</h4>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery-box">
+              
               <img src="images/travel-3.jpg" />
               <h4>Venice Beach</h4>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery-box">
-              <img src="images/travel-4.jpg" />
+             <img src="images/travel-4.jpg" />
               <h4>Italy</h4>
             </div>
           </div>
@@ -237,11 +229,9 @@
       </div>
     </section>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -257,96 +247,13 @@
       async=""
       defer=""
     ></script>
+    <!-- Page loads with Map Table hidden, and only shows when the users searchs -->
+      <script>
+$("#typing").click(function(){
+  $("#results").show();
+});
+</script>
   </body>
 </html>
 
 
-<!-- <h1>Featured Destinations</h1>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="feature-box">
-              <div class="feature-img">
-                <img src="images/1.jpg" />
-                <div class="price">
-                  <p>€650</p>
-                </div>
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-o"></i>
-                  <i class="fa fa-star-o"></i>
-                </div>
-              </div>
-              <div class="feature-details">
-                <h4>Walt Disney</h4>
-                <p>
-                  Great for the whole family!
-                </p>
-                <div>
-                  <span><i class="fa fa-map-marker"></i>Disney Land</span>
-                  <span><i class="fa fa-sun-o"></i>4 Days</span>
-                  <span><i class="fa fa-moon-o"></i>3 Nights</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="feature-box">
-              <div class="feature-img">
-                <img src="images/2.jpg" />
-                <div class="price">
-                  <p>€750</p>
-                </div>
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-o"></i>
-                  <i class="fa fa-star-o"></i>
-                </div>
-              </div>
-              <div class="feature-details">
-                <h4>The Big Apple</h4>
-                <p>
-                  Shop till you drop!
-                </p>
-                <div>
-                  <span><i class="fa fa-map-marker"></i>New York</span>
-                  <span><i class="fa fa-sun-o"></i>4 Days</span>
-                  <span><i class="fa fa-moon-o"></i>3 Nights</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="feature-box">
-              <div class="feature-img">
-                <img src="images/3.jpg" />
-                <div class="price">
-                  <p>€980</p>
-                </div>
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-o"></i>
-                  <i class="fa fa-star-o"></i>
-                </div>
-              </div>
-              <div class="feature-details">
-                <h4>Singapore</h4>
-                <p>
-                  Gateway to Asia
-                </p>
-                <div>
-                  <span><i class="fa fa-map-marker"></i>Singapore </span>
-                  <span><i class="fa fa-sun-o"></i>4 Days</span>
-                  <span><i class="fa fa-moon-o"></i>3 Nights</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
