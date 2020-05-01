@@ -19,9 +19,10 @@
   />
   <link
     href="https://fonts.googleapis.com/css?family=Orbitron"
-    rel="stylesheet"/> 
-    <link rel="stylesheet" href="style.css" type="text/css" />
-    
+    rel="stylesheet"
+  /> 
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="js/maps.js"></script>
   </head>
   <body>
@@ -30,42 +31,51 @@
         <img src="images/pktravel.png" />
       </div>
       <h1>Travel Across The Globe</h1>
-      <p>Just type in your destination</p>
+      <p>Just type in your destination.</p>
       <div id="typing" class="input-group">
         <input
-          id="autocomplete" ID ="typing"
+          id="autocomplete"
           type="text"
           class="form-control"
           placeholder="Search Country or City"
         />
-  
-      
+       
     </section>
+    <section class="features">
+    </div>
     <div id="slbuttons">
       <div class="btn btn-info" onclick="onPlaceChanged(['lodging'])">
-        Hotels
+        Accommodation
       </div>
-      <div class="btn btn-info" onclick="onPlaceChanged(['bar', 'restaurant'])">
+      <div
+        class="btn btn-info"
+        onclick="onPlaceChanged(['bar', 'restaurant'])"
+      >
         Bars/Restaurants
       </div>
       <div class="btn btn-info" onclick="onPlaceChanged(['museum'])">
         Tourist Attractions
       </div>
-      <div id="button" class="btn btn-warning text-center" onclick="reset()">
-        <i>Reset </i>
+      <div
+        id="button"
+        class="btn btn-warning text-center"
+        onclick="reset()"
+      >
+        <i>Reset Search</i>
       </div>
     </div>
-    <section class="map">
+  </div>
+</div>
       <div class="row">
         <!-- map -->
-        <div class="col-sm-12 text-center">
+        <div id="result" class="col-sm-12 text-center">
           <div id="map"></div>
         </div>
       </div>
       
     </section>
-    <section class="mapTable" id ="results">
-          <div class="row">
+    <section id = "result" class="mapTable">
+            <div class="row">
         <div class="col-sm-12 text-center">
           <!-- results section-->
           <div id="resultsdropdown"></div>
@@ -119,20 +129,19 @@
           </div>
           <div class="col-md-3">
             <div class="gallery-box">
-             <img src="images/travel-2.jpg" />
+              <img src="images/travel-2.jpg" />
               <h4>France</h4>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery-box">
-              
               <img src="images/travel-3.jpg" />
               <h4>Venice Beach</h4>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery-box">
-             <img src="images/travel-4.jpg" />
+              <img src="images/travel-4.jpg" />
               <h4>Italy</h4>
             </div>
           </div>
@@ -229,9 +238,11 @@
       </div>
     </section>
 
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -247,12 +258,7 @@
       async=""
       defer=""
     ></script>
-    <!-- Page loads with Map Table hidden, and only shows when the users searchs -->
-      <script>
-$("#typing").click(function(){
-  $("#results").show();
-});
-</script>
+   
   </body>
 </html>
 
